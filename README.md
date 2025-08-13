@@ -6,6 +6,20 @@ The entire workflow is encapsulated within a single Jupyter Notebook, showcasing
 ## Project Workflow
 The pipeline follows a modern ETL (Extract, Transform, Load) process, enhanced with AI capabilities at its core. The diagram below illustrates the flow of data from raw sources to the final, queryable vector database.
 
+```text
+graph TD
+    A[Start: RSS Feeds] --> B[Fetch New Articles];
+    B --> C[Scrape Full Article Text];
+    C --> D[AI Enrichment];
+    subgraph D [AI Enrichment]
+        D1[Summarize Article]
+        D2[Categorize Article]
+        D3[Generate Embeddings]
+    end
+    D --> E[Load to PostgreSQL];
+    E --> F[End: Enriched Data in DB];
+```
+
 ## Architecture Breakdown
 - Extract: The pipeline begins by fetching the latest article metadata from specified RSS feeds (e.g., BBC News).
 
